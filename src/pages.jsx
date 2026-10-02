@@ -112,6 +112,19 @@ export function Home() {
         </div>
       </section>
 
+      <section className="wrap section">
+        <Link to="/about" className="two-col" style={{ alignItems: 'end' }}>
+          <p className="statement">Named after a seed <span className="serif">Rajasthan sings about.</span></p>
+          <div style={{ display: 'grid', gap: 20, justifyItems: 'start' }}>
+            <p className="body-lg">
+              The chirmi is the red seed of a Rajasthani folk song about longing for home — and the seed
+              goldsmiths once weighed gold against. Small, exact, and full of feeling. That’s the standard.
+            </p>
+            <span className="pill">Why Chirmi +</span>
+          </div>
+        </Link>
+      </section>
+
       <section className="wrap section" aria-labelledby="price-h">
         <div className="section-head">
           <h2 id="price-h" className="display">We publish<br />our prices.</h2>
@@ -353,24 +366,52 @@ export function Brands() {
 export function About() {
   return (
     <>
-      <Seo title="About" description="Indian goldsmiths once weighed gold against the chirmi seed. A small thing that became the standard." path="/about" />
+      <Seo title="About" description="Chirmi is the red seed Rajasthan sings about, and the seed goldsmiths once weighed gold against. Small, exact, and full of feeling." path="/about" />
       <section className="wrap hero">
-        <h1 className="display-xl rise">The thing gold<br />was <span className="serif">measured</span> against.</h1>
+        <h1 className="display-xl rise">A small seed.<br />A long <span className="serif">song.</span></h1>
+        <div className="hero-foot rise rise-2">
+          <p className="body-lg">Chirmi is a tiny red seed with a black eye. In Rajasthan, it’s also a feeling.</p>
+        </div>
       </section>
       <section className="wrap section">
         <div className="two-col">
-          <p className="caption">Why “Chirmi”</p>
+          <p className="caption">In Rajasthan</p>
           <div style={{ display: 'grid', gap: 20 }}>
             <p className="body-lg" style={{ fontSize: 22, lineHeight: 1.17 }}>
-              For centuries, Indian goldsmiths weighed gold against the chirmi seed — so consistent in
-              weight that it became the <span className="serif">ratti</span>, the unit for measuring gold
-              and gemstones across the subcontinent.
+              The chirmi grows on a wild creeper across the Rajasthani desert, and it gives its name to one of
+              the state’s best-loved folk songs. In <span className="serif">“Chirmi”</span>, a young bride far
+              from her parents’ home sees the chirmi vine and is reminded, one by one, of everyone she loves.
             </p>
             <p className="body-lg">
-              A seed you could lose in your palm, and it was the standard. That’s the studio we want to be:
-              small, exact, and the measure other work is held to.
+              It’s a song about longing and belonging — about how something small and familiar can carry you
+              all the way home. Generations of women have sung it at weddings and in courtyards, and it still
+              makes people tear up.
             </p>
           </div>
+        </div>
+      </section>
+      <section className="wrap section">
+        <div className="two-col">
+          <p className="caption">The measure</p>
+          <div style={{ display: 'grid', gap: 20 }}>
+            <p className="body-lg" style={{ fontSize: 22, lineHeight: 1.17 }}>
+              The same seed is so consistent in weight that Indian goldsmiths weighed gold against it for
+              centuries. It became the <span className="serif">ratti</span>, the unit for measuring gold and
+              gemstones across the subcontinent.
+            </p>
+            <p className="body-lg">
+              A seed you could lose in your palm, and it was the standard.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section className="wrap section">
+        <div className="panel panel-warm" style={{ padding: 'clamp(24px, 5vw, 64px)' }}>
+          <p className="caption">So, House of Chirmi</p>
+          <p className="statement" style={{ fontSize: 'var(--text-heading-sm)' }}>
+            Exact enough to be the measure. Warm enough to feel like home. We want every store we build to
+            do both — so a customer miles away opens it and feels they already <span className="serif">know</span> the brand.
+          </p>
         </div>
       </section>
       <section className="wrap section">
