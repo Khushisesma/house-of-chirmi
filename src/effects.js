@@ -83,7 +83,7 @@ export function useSiteEffects(pathname) {
     const label = cur.firstChild
     let x = -100, y = -100, cx = x, cy = y, raf
     const loop = () => {
-      cx += (x - cx) * 0.22; cy += (y - cy) * 0.22
+      cx += (x - cx) * 0.5; cy += (y - cy) * 0.5
       cur.style.transform = `translate3d(${cx}px, ${cy}px, 0)`
       raf = requestAnimationFrame(loop)
     }
