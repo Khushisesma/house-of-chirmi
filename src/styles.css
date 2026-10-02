@@ -336,12 +336,12 @@ a.row:hover .pill { background: var(--kohl); }
 @keyframes bob { 50% { transform: translateY(-18px) rotate(6deg); } }
 @media (max-width: 760px) { .f2, .f4 { display: none; } .f1 { top: 2%; right: -4%; } .f3 { bottom: 2%; } }
 .spin-badge { position: absolute; z-index: 3; right: clamp(16px, 5vw, 80px); bottom: clamp(24px, 6vw, 70px); width: clamp(110px, 12vw, 170px); aspect-ratio: 1; display: grid; place-items: center; }
-.spin-badge svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.motion .spin-badge svg { animation: spin 14s linear infinite; }
-.spin-badge:hover svg { animation-duration: 4s; }
-.spin-badge text { font-size: 17.5px; text-transform: uppercase; letter-spacing: .14em; fill: var(--kohl); }
-.spin-badge-seed { width: 46%; filter: none; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
-.spin-badge:hover .spin-badge-seed { transform: rotate(-30deg) scale(1.12); }
+.spin-badge .badge-ring { position: absolute; inset: 0; width: 100%; height: 100%; }
+.motion .spin-badge .badge-ring { animation: spin 14s linear infinite; }
+.spin-badge:hover .badge-ring { animation-duration: 4s; }
+.spin-badge text { font-size: 16px; text-transform: uppercase; letter-spacing: .14em; fill: var(--kohl); }
+.spin-badge .spin-badge-seed { position: relative; width: 44%; filter: drop-shadow(0 8px 10px rgba(120,10,5,.25)); transform: rotate(-18deg); transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+.spin-badge:hover .spin-badge-seed { transform: rotate(-40deg) scale(1.12); }
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (max-width: 760px) { .spin-badge { display: none; } }
 

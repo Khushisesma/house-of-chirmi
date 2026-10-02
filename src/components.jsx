@@ -66,11 +66,11 @@ export const Marquee = ({ items, className = '', reverse }) => {
 }
 
 /* Rotating circular badge with a seed in the middle. */
-export const SpinBadge = ({ to = '/contact', text = 'Start a project • Start a project • ' }) => (
+export const SpinBadge = ({ to = '/contact', text = 'Start a project • Start a project •' }) => (
   <Link to={to} className="spin-badge" aria-label="Start a project" data-cursor="Hello">
-    <svg viewBox="0 0 200 200" aria-hidden="true">
+    <svg className="badge-ring" viewBox="0 0 200 200" aria-hidden="true">
       <defs><path id="badge-circle" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" /></defs>
-      <text><textPath href="#badge-circle">{text}</textPath></text>
+      <text><textPath href="#badge-circle" textLength="486" lengthAdjust="spacing">{text}</textPath></text>
     </svg>
     <Seed className="spin-badge-seed" />
   </Link>
