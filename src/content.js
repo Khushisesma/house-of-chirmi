@@ -4,7 +4,7 @@
 export const site = {
   name: 'House of Chirmi',
   url: 'https://www.houseofchirmi.com',
-  tagline: 'Shopify storefronts and brand partnerships for independent brands — fashion, jewellery, home décor, accessories and whatever you’re making next.',
+  tagline: 'Shopify stores, custom-coded websites and brand partnerships for independent brands — fashion, jewellery, home décor, accessories and whatever you’re making next.',
   email: 'houseofchirmi@gmail.com',
   instagram: 'https://instagram.com/houseofchirmi',
   instagramLabel: '@houseofchirmi',
@@ -65,6 +65,13 @@ export const services = [
     to: '/studio',
   },
   {
+    name: 'Custom-coded websites',
+    tags: ['Design', 'Code', 'Launch'],
+    body: 'Hand-coded sites with no theme limits — brand sites, portfolios, landing pages and more. This website is one.',
+    price: 'Quoted per project',
+    to: '/studio',
+  },
+  {
     name: 'Brand partnership',
     tags: ['Strategy', 'Content', 'Conversion'],
     body: 'We own how your brand shows up and how it converts, month to month. Content, campaigns, merchandising, and the numbers behind them.',
@@ -118,6 +125,7 @@ export const processSteps = [
 ]
 
 export const studioFaq = [
+  { q: 'Do you only build on Shopify?', a: 'No. Shopify is the right call for most online stores, but we also design and hand-code custom websites — brand sites, portfolios, landing pages, and stores that need more than a theme allows. This site is custom-coded. Custom builds are quoted per project.' },
   { q: 'How long does it take?', a: 'Ten days for Launch, three weeks for Growth, and around a month for Signature depending on how much brand work is involved.' },
   { q: 'What do you need from me?', a: 'Your product photos, your copy or a willingness to let us write it, and one call to agree the structure.' },
   { q: 'Do I own the store?', a: 'Yes. Completely. Always.' },
@@ -148,8 +156,8 @@ export const commitments = [
   { title: 'We learn your category.', body: 'Sarees, clutches or candle holders — we study how your buyer shops before we design a thing.' },
 ]
 
-export const needOptions = ['New Shopify store', 'Redesign / migration', 'Brand partnership', 'Not sure yet']
-export const budgetOptions = ['₹35,000 — Launch', '₹65,000 — Growth', '₹1,10,000 — Signature', '₹22,000+ / month — Partnership', 'Not sure yet']
+export const needOptions = ['New Shopify store', 'Custom-coded website', 'Redesign / migration', 'Brand partnership', 'Not sure yet']
+export const budgetOptions = ['₹35,000 — Launch', '₹65,000 — Growth', '₹1,10,000 — Signature', '₹22,000+ / month — Partnership', 'Custom build — quote me', 'Not sure yet']
 
 // Case studies. Only "brand" and "built" are required — "brief" and "result"
 // render only when filled in. Add real numbers (AOV, conversion) as you get them.

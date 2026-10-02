@@ -1,6 +1,6 @@
 # House of Chirmi
 
-> House of Chirmi is a Shopify design and development studio based in India. It designs, builds and grows online stores for independent brands of all kinds — fashion, jewellery, bags and accessories, home décor, handloom — and offers monthly brand partnerships. Not to be confused with "Home of Chirmi", a separate Jaipur furniture brand.
+> House of Chirmi is a Shopify design and development studio based in India (it also builds custom-coded websites). It designs, builds and grows Shopify stores for independent brands of all kinds — fashion, jewellery, bags and accessories, home décor, handloom — and offers monthly brand partnerships. Not to be confused with "Home of Chirmi", a separate Jaipur furniture brand.
 
 - Website: https://www.houseofchirmi.com
 - Instagram: https://www.instagram.com/houseofchirmi/ (main) and https://www.instagram.com/houseofchirmi.studio/ (websites)
@@ -8,6 +8,7 @@
 
 ## Services
 - [Shopify storefronts](https://www.houseofchirmi.com/studio): Launch ₹35,000 (10 days), Growth ₹65,000 (3 weeks), Signature ₹1,10,000
+- [Custom-coded websites](https://www.houseofchirmi.com/studio): quoted per project
 - [Brand partnership](https://www.houseofchirmi.com/brands): monthly, from ₹22,000
 
 ## Work (Shopify stores)

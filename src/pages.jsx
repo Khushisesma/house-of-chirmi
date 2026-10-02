@@ -49,7 +49,7 @@ export function Home() {
         <Seed className="float f3" data-depth="2" />
         <Seed className="float f4" data-depth="1" />
         <div className="wrap">
-          <p className="caption hero-kicker"><span className="dot" /> Shopify studio · India · open for projects</p>
+          <p className="caption hero-kicker"><span className="dot" /> Shopify studio · custom code too · open for projects</p>
           <h1 className="display-xl hero-title">
             <Words>Shopify stores</Words><br />
             <Words>for brands with</Words><br />
@@ -57,8 +57,9 @@ export function Home() {
           </h1>
           <div className="hero-foot">
             <p className="body-lg rise rise-2">
-              House of Chirmi designs, builds and grows storefronts for independent brands — fashion,
-              jewellery, bags, home décor, and whatever you’re making next.
+              House of Chirmi designs, builds and grows Shopify stores for independent brands — fashion,
+              jewellery, bags, home décor, and whatever you’re making next. Need more than a theme allows?
+              We hand-code custom websites too.
             </p>
             <div className="pill-row rise rise-3">
               <Pill to="/work">View work</Pill>
@@ -201,7 +202,7 @@ export function Home() {
 export function Work() {
   return (
     <>
-      <Seo title="Work" description="Selected Shopify storefronts — fashion, jewellery, bags, home décor and handloom brands." path="/work" />
+      <Seo title="Work" description="Selected websites and Shopify stores — fashion, jewellery, bags, home décor and handloom brands." path="/work" />
       <section className="wrap hero">
         <h1 className="display-xl hero-title"><Words>Selected</Words> <span className="word serif hl" style={{ '--i': 1 }}><span>work.</span></span></h1>
         <div className="hero-foot rise rise-2">
@@ -318,11 +319,11 @@ export function CaseDetail() {
 export function Studio() {
   return (
     <>
-      <Seo title="Websites" description="Shopify storefronts for independent brands. Launch ₹35,000, Growth ₹65,000, Signature ₹1,10,000. Prices published." path="/studio" />
+      <Seo title="Websites" description="Shopify stores and custom-coded websites for independent brands. Shopify: Launch ₹35,000, Growth ₹65,000, Signature ₹1,10,000. Prices published." path="/studio" />
       <section className="wrap hero">
         <h1 className="display-xl rise">Storefronts that<br />earn the <span className="serif">price.</span></h1>
         <div className="hero-foot rise rise-2">
-          <p className="body-lg">Fast, beautiful Shopify stores for independent brands — fashion, jewellery, home, lifestyle — built to sell at a premium without apology.</p>
+          <p className="body-lg">Fast, beautiful Shopify stores for independent brands — built to sell at a premium without apology. Need something a theme can’t do? We hand-code custom websites too, quoted per project.</p>
           <Pill to="/contact">Start a project</Pill>
         </div>
       </section>
@@ -490,13 +491,13 @@ export function About() {
           <p className="caption">Who’s behind it</p>
           <div style={{ display: 'grid', gap: 20 }}>
             <p className="body-lg" style={{ fontSize: 22, lineHeight: 1.17 }}>
-              House of Chirmi is led by Khushi, a Shopify designer and developer who has built storefronts
+              House of Chirmi is led by Khushi, a Shopify designer and developer (who also hand-codes custom websites) who has built storefronts
               for fashion, jewellery, handmade bags, home décor and handloom labels — and is always up for a
               new category.
             </p>
             <p className="body-lg">
               Every project is handled personally — you talk to the person designing and building your
-              store, not an account manager.
+              website, not an account manager.
             </p>
           </div>
         </div>
