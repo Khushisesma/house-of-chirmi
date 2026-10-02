@@ -149,7 +149,7 @@ export function CaseDetail() {
   const c = getCase(slug)
   if (!c) return <Navigate to="/work" replace />
   const next = getNextCase(slug)
-  const blocks = [['The brand', c.brand], ['The brief', c.brief], ['What we built', c.built], ['The result', c.result]]
+  const blocks = [['The brand', c.brand], ['The brief', c.brief], ['What we built', c.built], ['The result', c.result]].filter(([, b]) => b)
   return (
     <>
       <Seo title={c.name} description={c.blurb} path={`/work/${c.slug}`} />
