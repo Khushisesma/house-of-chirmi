@@ -5,7 +5,7 @@ import {
   site, stats, services, packages, alwaysIncluded, processSteps, studioFaq,
   monthlyWork, brandTiers, commitments, cases, getCase, getNextCase,
   categories, featuredTestimonials, getTestimonial,
-  needOptions, budgetOptions, whatsappLink,
+  needOptions, budgetOptions,
 } from './content'
 
 const Faq = ({ items }) => (
@@ -529,15 +529,16 @@ export function Contact() {
     f.message && `\n${f.message}`,
   ].filter(Boolean).join('\n')
 
+  const mailto = `mailto:${site.email}?subject=${encodeURIComponent(`Project enquiry — ${f.brand || f.name || 'new brand'}`)}&body=${encodeURIComponent(text)}`
+
   const onSubmit = (e) => {
     e.preventDefault()
-    window.open(whatsappLink(text), '_blank', 'noopener')
+    window.location.href = mailto
   }
-  const mailto = `mailto:${site.email}?subject=${encodeURIComponent(`Project enquiry — ${f.brand || f.name || 'new brand'}`)}&body=${encodeURIComponent(text)}`
 
   return (
     <>
-      <Seo title="Contact" description="Start a project with House of Chirmi. WhatsApp or email — we reply within one working day." path="/contact" />
+      <Seo title="Contact" description="Start a project with House of Chirmi. Email us or message us on Instagram — we reply within one working day." path="/contact" />
       <section className="wrap hero">
         <h1 className="display-xl rise">Start a<br /><span className="serif">project.</span></h1>
         <div className="hero-foot rise rise-2">
@@ -548,7 +549,6 @@ export function Contact() {
         <div className="detail-grid">
           <div style={{ display: 'grid', gap: 12, alignContent: 'start' }}>
             <p className="caption">Direct</p>
-            <a className="subheading" href={whatsappLink('Hi House of Chirmi!')} target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
             <a className="subheading" href={`mailto:${site.email}`} style={{ wordBreak: 'break-all' }}>{site.email}</a>
             <a className="subheading" href={site.instagram} target="_blank" rel="noopener noreferrer">{site.instagramLabel} ↗</a>
             <a className="subheading" href={site.studioInstagram} target="_blank" rel="noopener noreferrer">{site.studioInstagramLabel} ↗</a>
@@ -565,10 +565,9 @@ export function Contact() {
             </div>
             <div className="field"><label htmlFor="message">Anything else?</label><textarea id="message" value={f.message} onChange={set('message')} /></div>
             <div className="pill-row" style={{ alignItems: 'center' }}>
-              <button type="submit" className="pill">Send on WhatsApp</button>
-              <a className="pill pill-ghost" href={mailto}>Send by email</a>
+              <button type="submit" className="pill"><span>Send by email</span></button>
             </div>
-            <p className="form-note">Opens WhatsApp or your email app with your details filled in.</p>
+            <p className="form-note">Opens your email app with your details filled in.</p>
           </form>
         </div>
       </section>

@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useId, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import { site, navLinks, whatsappLink, categories } from './content'
+import { site, navLinks, categories } from './content'
 import { useSiteEffects } from './effects'
 
 export function Seo({ title, description = site.tagline, path = '/' }) {
@@ -141,9 +141,7 @@ function Header() {
       {open && (
         <nav id="mobile-nav" className="mobile-nav" aria-label="Mobile">
           {navLinks.map((l) => <NavLink key={l.to} to={l.to}>{l.label}</NavLink>)}
-          <a className="pill" href={whatsappLink('Hi House of Chirmi, I’d like to talk about my brand.')} target="_blank" rel="noopener noreferrer">
-            WhatsApp us
-          </a>
+          <Link className="pill" to="/contact">Start a project</Link>
         </nav>
       )}
     </header>
@@ -160,7 +158,7 @@ function Footer() {
           <h2 className="display-xl" data-reveal><span className="word-rise">Tell us what<br />you’re <span className="serif">building.</span></span></h2>
           <div className="pill-row" style={{ marginTop: 40 }}>
             <Pill to="/contact">Start a project</Pill>
-            <Pill ghost href={whatsappLink('Hi House of Chirmi, I’d like to talk about my brand.')}>WhatsApp</Pill>
+            <a className="pill pill-ghost" href={`mailto:${site.email}`} data-magnetic><span>Email us</span></a>
           </div>
         </div>
         <div className="footer-cols">
@@ -171,7 +169,6 @@ function Footer() {
           <div>
             <p className="caption">Contact</p>
             <a href={`mailto:${site.email}`}>{site.email}</a>
-            <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
           </div>
           <div>
             <p className="caption">Follow</p>

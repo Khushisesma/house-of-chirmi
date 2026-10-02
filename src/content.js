@@ -10,7 +10,6 @@ export const site = {
   instagramLabel: '@houseofchirmi',
   studioInstagram: 'https://instagram.com/houseofchirmi.studio',
   studioInstagramLabel: '@houseofchirmi.studio',
-  whatsappNumber: '919660570279',
   location: 'India — working remotely with brands everywhere',
 }
 
@@ -270,5 +269,4 @@ export const getNextCase = (slug) => {
   return cases[(i + 1) % cases.length]
 }
 
-export const whatsappLink = (text) =>
-  `https://wa.me/${site.whatsappNumber}${text ? `?text=${encodeURIComponent(text)}` : ''}`
+
