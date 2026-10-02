@@ -148,7 +148,7 @@ export const cases = [
     url: 'https://www.lakhmanis.com',
     image: '/images/lakhmanis-desktop.webp',
     mobile: '/images/lakhmanis-mobile.webp',
-    blurb: 'An ethnic-wear store built around the festival calendar — Navratri, festive edits, and a range from everyday kurtis to lehengas.',
+    blurb: 'An ethnic-wear store for everyday kurtis to festive lehengas — heritage meets modernity.',
     brand: 'An ethnic-wear label selling kurtis, suits, anarkalis, co-ord sets and lehengas — “heritage meets modernity”.',
     brief: '',
     built: 'A storefront whose navigation follows how she shops: festive and Navratri edits up front, then clear paths by silhouette — co-ords, dresses, anarkali, lehenga, short kurtis — across a wide price range.',
