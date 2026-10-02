@@ -127,7 +127,8 @@ function Header() {
   }, [open])
 
   return (
-    <header className="header">
+    <>
+    <header className={`header${open ? ' header-open' : ''}`}>
       <div className="progress" aria-hidden="true" />
       <div className="wrap header-row">
         <Wordmark />
@@ -138,13 +139,26 @@ function Header() {
           {open ? 'Close' : 'Menu'}
         </button>
       </div>
-      {open && (
-        <nav id="mobile-nav" className="mobile-nav" aria-label="Mobile">
-          {navLinks.map((l) => <NavLink key={l.to} to={l.to}>{l.label}</NavLink>)}
-          <Link className="pill" to="/contact">Start a project</Link>
-        </nav>
-      )}
     </header>
+    {/* Lives outside <header>: the header's backdrop blur would otherwise trap this fixed panel inside it. */}
+    {open && (
+      <nav id="mobile-nav" className="mobile-nav" aria-label="Mobile">
+        <div className="mobile-nav-links">
+          {navLinks.map((l, i) => (
+            <NavLink key={l.to} to={l.to} style={{ '--i': i }}>
+              <span className="mobile-nav-num">0{i + 1}</span>{l.label}
+            </NavLink>
+          ))}
+        </div>
+        <div className="mobile-nav-foot">
+          <Link className="pill" to="/contact"><span>Start a project</span></Link>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+          <a href={site.instagram} target="_blank" rel="noopener noreferrer">{site.instagramLabel} ↗</a>
+        </div>
+        <Seed className="mobile-nav-seed" />
+      </nav>
+    )}
+    </>
   )
 }
 

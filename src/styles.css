@@ -107,8 +107,6 @@ button, input, select, textarea { font: inherit; color: inherit; letter-spacing:
 .menu-btn { background: none; border: 0; padding: 8px 0; font-size: var(--text-caption); text-transform: uppercase; cursor: pointer; }
 @media (min-width: 900px) { .nav { display: flex; } .menu-btn { display: none; } }
 .mobile-nav { position: fixed; inset: 56px 0 0; background: var(--color-bone); padding: 24px var(--gutter); display: flex; flex-direction: column; z-index: 49; }
-.mobile-nav a { font-size: 44px; font-weight: 300; text-transform: uppercase; letter-spacing: -0.04em; line-height: 1; padding: 10px 0; border-bottom: 1px solid var(--color-ash); }
-.mobile-nav .pill { margin-top: 32px; align-self: flex-start; font-size: var(--text-caption); }
 
 /* ---------- Pills ---------- */
 .pill {
@@ -274,9 +272,6 @@ a:hover { color: inherit; }
 .nav a::after { content: ''; position: absolute; left: 29px; right: 0; bottom: -4px; height: 1px; background: var(--chirmi); transform: scaleX(0); transform-origin: right; transition: transform .35s cubic-bezier(.2,.7,.2,1); }
 .nav a:hover::after, .nav a[aria-current='page']::after { transform: scaleX(1); transform-origin: left; }
 .nav a[aria-current='page']::before { color: var(--chirmi); }
-.mobile-nav { background: var(--chirmi); color: var(--sand); }
-.mobile-nav a { border-bottom-color: color-mix(in srgb, var(--sand) 35%, transparent); }
-.mobile-nav .pill { background: var(--kohl); }
 
 /* Pills: colour sweep on hover */
 .pill { position: relative; overflow: hidden; isolation: isolate; background: var(--kohl); color: var(--sand); padding: 11px 18px 10px; transition: transform .25s cubic-bezier(.2,.7,.2,1), color .3s; }
@@ -489,3 +484,30 @@ html:not(.motion) .scrub .w { color: var(--kohl); }
 .view-all:hover { color: var(--sand); padding-left: 16px; padding-right: 16px; }
 .view-all:hover::before { transform: none; }
 .view-all-text { font-size: clamp(40px, 7vw, 110px); font-weight: 300; text-transform: uppercase; letter-spacing: -0.05em; line-height: .85; }
+
+/* ---------- Mobile menu (full screen, red) ---------- */
+.header-open { background: var(--chirmi); color: var(--sand); border-bottom-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
+.header-open .wordmark sup { color: var(--sand); }
+.mobile-nav {
+  position: fixed; inset: 56px 0 0; z-index: 49; overflow-y: auto; overscroll-behavior: contain;
+  background: var(--chirmi); color: var(--sand);
+  padding: 16px var(--gutter) calc(28px + env(safe-area-inset-bottom));
+  display: flex; flex-direction: column; justify-content: space-between; gap: 32px;
+}
+.mobile-nav-links { display: flex; flex-direction: column; }
+.mobile-nav-links a {
+  display: flex; align-items: baseline; gap: 14px;
+  font-size: clamp(38px, 11vw, 56px); font-weight: 300; text-transform: uppercase; letter-spacing: -0.05em; line-height: 1;
+  padding: 14px 0; border-bottom: 1px solid color-mix(in srgb, var(--sand) 35%, transparent);
+}
+.mobile-nav-links a[aria-current='page'] { color: var(--kohl); }
+.mobile-nav-num { font-size: 12px; letter-spacing: 0; opacity: .7; min-width: 20px; }
+.mobile-nav-foot { display: grid; gap: 10px; justify-items: start; font-size: 14px; position: relative; z-index: 1; }
+.mobile-nav-foot a:not(.pill) { font-size: 15px; letter-spacing: -0.01em; border-bottom: 1px solid color-mix(in srgb, var(--sand) 45%, transparent); padding-bottom: 2px; }
+.mobile-nav-foot .pill { background: var(--kohl); color: var(--sand); margin-bottom: 8px; padding: 13px 20px 12px; }
+.mobile-nav-seed { position: absolute; right: -24px; bottom: 120px; width: 130px; rotate: -25deg; opacity: .95; pointer-events: none; }
+.motion .mobile-nav { animation: navIn .45s cubic-bezier(.2,.8,.2,1) both; }
+.motion .mobile-nav-links a { animation: navLink .6s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(var(--i) * 55ms + 80ms); }
+.motion .mobile-nav-seed { animation: bob 6s ease-in-out infinite; }
+@keyframes navIn { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes navLink { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
