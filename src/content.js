@@ -32,6 +32,15 @@ export const testimonials = [
     by: 'Mili, Founder',
     brand: 'Lakhmanis',
     slug: 'lakhmanis',
+    featured: true,
+  },
+  {
+    // Paste Kaarmugizh's words here (verbatim) and it appears on the home page automatically.
+    quote: '',
+    by: 'Founder',
+    brand: 'Kaarmugizh',
+    slug: 'kaarmugizh',
+    featured: true,
   },
   {
     quote: 'She understood my vision so effortlessly and translated it into a website that’s both stunning and user-friendly. Her attention to detail, aesthetic sense, and dedication to perfecting every element made the process smooth and joyful.',
@@ -163,21 +172,6 @@ export const cases = [
     result: 'A ₹10,500 average order value on a store that reads as considered, not clearance.',
   },
   {
-    slug: 'cannish-pitara',
-    name: 'Cannish Pitara',
-    tags: ['Bags & accessories', 'Vegan', 'Shopify'],
-    meta: '100 handmade bags, everyday to wedding',
-    url: 'https://www.cannishpitara.in',
-    image: '/images/cannishpitara-desktop.webp',
-    mobile: '/images/cannishpitara-mobile.webp',
-    long: '/images/cannishpitara-long.webp',
-    blurb: 'Handmade vegan bags and clutches — a store that sells the office tote and the wedding potli side by side.',
-    brand: 'A Made-in-India label of handmade vegan bags — totes, slings, batuas, potlis and festive clutches — for western and ethnic looks alike.',
-    brief: 'One catalogue, very different buyers: someone commuting to work, someone packing for a trip, someone dressing for a wedding. Each needed a way in.',
-    built: 'Navigation built around when you’ll carry it, not what it’s made of — Office and Work, Travel Ready, Slings for All, a Wedding & Festive edit — plus an Under ₹1,000 entry point and campaign banners that change with the season.',
-    result: '',
-  },
-  {
     slug: 'lakhmanis',
     name: 'Lakhmanis',
     tags: ['Fashion', 'Festive', 'Shopify'],
@@ -191,21 +185,6 @@ export const cases = [
     brief: 'Get a complete, credible store live fast — without it looking rushed.',
     built: 'A storefront whose navigation follows how she shops: trending and festive edits up front, then clear paths by silhouette — co-ords, dresses, anarkali, lehenga, short kurtis — across a wide price range. Responsive across phone, tablet and desktop.',
     result: 'Designed, built and handed over in two days.',
-  },
-  {
-    slug: 'soven-home',
-    name: 'Soven Home',
-    tags: ['Home décor', 'Lifestyle', 'Shopify'],
-    meta: 'Vases, serveware, candle holders, planters',
-    url: '',
-    image: '/images/soven-desktop.webp',
-    mobile: '',
-    gallery: ['/images/soven-1.webp', '/images/soven-2.webp', '/images/soven-3.webp', '/images/soven-4.webp', '/images/soven-5.webp', '/images/soven-6.webp'],
-    blurb: 'A soft, calm home-décor store for handpicked pieces — cake stands to planters.',
-    brand: 'A home-décor label curating handpicked pieces for every corner — vases, candle holders, serveware, dinnerware, mugs and planters — delivering across India.',
-    brief: 'Move a brand that sold through Instagram DMs onto a store that feels as calm and curated as the products.',
-    built: 'A sleek Shopify storefront in warm stone and cocoa: a “Handmade for your home” hero, bestsellers and collections up front, editorial bands like “Artful Homeware” and “Simplicity, Redefined”, a brand-values story, and email and Instagram capture — so browsing feels like walking through a well-styled home.',
-    result: '',
   },
   {
     slug: 'dumroo',
@@ -252,10 +231,41 @@ export const cases = [
     built: 'Festival-led collection architecture, four clean category paths (women, men, kids, jewellery), and a jewellery line merchandised to sell alongside the saree rather than compete with it.',
     result: 'Range stopped being a liability and became the reason to come back.',
   },
+  {
+    slug: 'cannish-pitara',
+    name: 'Cannish Pitara',
+    tags: ['Bags & accessories', 'Vegan', 'Shopify'],
+    meta: '100 handmade bags, everyday to wedding',
+    url: 'https://www.cannishpitara.in',
+    image: '/images/cannishpitara-desktop.webp',
+    mobile: '/images/cannishpitara-mobile.webp',
+    long: '/images/cannishpitara-long.webp',
+    blurb: 'Handmade vegan bags and clutches — a store that sells the office tote and the wedding potli side by side.',
+    brand: 'A Made-in-India label of handmade vegan bags — totes, slings, batuas, potlis and festive clutches — for western and ethnic looks alike.',
+    brief: 'One catalogue, very different buyers: someone commuting to work, someone packing for a trip, someone dressing for a wedding. Each needed a way in.',
+    built: 'Navigation built around when you’ll carry it, not what it’s made of — Office and Work, Travel Ready, Slings for All, a Wedding & Festive edit — plus an Under ₹1,000 entry point and campaign banners that change with the season.',
+    result: '',
+  },
+  {
+    slug: 'soven-home',
+    name: 'Soven Home',
+    tags: ['Home décor', 'Lifestyle', 'Shopify'],
+    meta: 'Vases, serveware, candle holders, planters',
+    url: '',
+    image: '/images/soven-desktop.webp',
+    mobile: '',
+    gallery: ['/images/soven-1.webp', '/images/soven-2.webp', '/images/soven-3.webp', '/images/soven-4.webp', '/images/soven-5.webp', '/images/soven-6.webp'],
+    blurb: 'A soft, calm home-décor store for handpicked pieces — cake stands to planters.',
+    brand: 'A home-décor label curating handpicked pieces for every corner — vases, candle holders, serveware, dinnerware, mugs and planters — delivering across India.',
+    brief: 'Move a brand that sold through Instagram DMs onto a store that feels as calm and curated as the products.',
+    built: 'A sleek Shopify storefront in warm stone and cocoa: a “Handmade for your home” hero, bestsellers and collections up front, editorial bands like “Artful Homeware” and “Simplicity, Redefined”, a brand-values story, and email and Instagram capture — so browsing feels like walking through a well-styled home.',
+    result: '',
+  },
 ]
 
 export const getCase = (slug) => cases.find((c) => c.slug === slug)
-export const getTestimonial = (slug) => testimonials.find((t) => t.slug === slug)
+export const featuredTestimonials = testimonials.filter((t) => t.featured && t.quote)
+export const getTestimonial = (slug) => testimonials.find((t) => t.slug === slug && t.quote)
 export const getNextCase = (slug) => {
   const i = cases.findIndex((c) => c.slug === slug)
   return cases[(i + 1) % cases.length]

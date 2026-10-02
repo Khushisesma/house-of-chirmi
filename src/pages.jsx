@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
-import { Seo, Pill, Meta, CaseCard, Quote } from './components'
+import { Seo, Pill, Meta, CaseCard, Quote, Seed, Marquee, SpinBadge, Words } from './components'
 import {
   site, stats, services, packages, alwaysIncluded, processSteps, studioFaq,
   monthlyWork, brandTiers, commitments, cases, getCase, getNextCase,
-  categories, testimonials, getTestimonial,
+  categories, featuredTestimonials, getTestimonial,
   needOptions, budgetOptions, whatsappLink,
 } from './content'
 
@@ -20,122 +20,168 @@ const Faq = ({ items }) => (
 )
 
 /* ---------------- Home ---------------- */
+// Colour for each stacked work card, in order. bg / text.
+const tones = [
+  ['var(--chirmi)', 'var(--sand)'],
+  ['var(--rani)', 'var(--sand)'],
+  ['var(--saffron)', 'var(--kohl)'],
+  ['var(--indigo)', 'var(--sand)'],
+  ['var(--peacock)', 'var(--sand)'],
+  ['var(--kohl)', 'var(--sand)'],
+  ['var(--marigold)', 'var(--kohl)'],
+]
+
+const Scrub = ({ text, serif }) => (
+  <p className="statement scrub" data-scrub>
+    {text.split(' ').map((w, i) => <span key={i} className="w">{w} </span>)}
+    {serif && <span className="w serif">{serif}</span>}
+  </p>
+)
+
 export function Home() {
-  const [first, ...rest] = cases
   return (
     <>
       <Seo path="/" />
-      <section className="wrap hero">
-        <h1 className="display-xl rise">
-          Shopify stores<br />for brands with<br /><span className="serif">something to say.</span>
-        </h1>
-        <div className="hero-foot rise rise-2">
-          <p className="body-lg">
-            House of Chirmi is a Shopify studio. We design, build and grow storefronts for independent
-            brands — fashion, jewellery, bags, home décor, and whatever you’re making next.
-          </p>
-          <div className="pill-row">
-            <Pill to="/work">View work</Pill>
-            <Pill ghost to="/contact">Start a project</Pill>
+      <section className="hero-home">
+        <Seed className="float f1" data-depth="1.4" />
+        <Seed className="float f2" data-depth="0.7" />
+        <Seed className="float f3" data-depth="2" />
+        <Seed className="float f4" data-depth="1" />
+        <div className="wrap">
+          <p className="caption hero-kicker"><span className="dot" /> Shopify studio · India · open for projects</p>
+          <h1 className="display-xl hero-title">
+            <Words>Shopify stores</Words><br />
+            <Words>for brands with</Words><br />
+            <span className="word serif hl" style={{ '--i': 5 }}><span>something to say.</span></span>
+          </h1>
+          <div className="hero-foot">
+            <p className="body-lg rise rise-2">
+              House of Chirmi designs, builds and grows storefronts for independent brands — fashion,
+              jewellery, bags, home décor, and whatever you’re making next.
+            </p>
+            <div className="pill-row rise rise-3">
+              <Pill to="/work">View work</Pill>
+              <Pill ghost to="/contact">Start a project</Pill>
+            </div>
           </div>
+        </div>
+        <SpinBadge />
+      </section>
+
+      <section className="tapes" aria-label="What we make">
+        <Marquee items={categories} className="tape tape-a" />
+        <Marquee items={['Design', 'Build', 'Launch', 'Grow', 'Repeat']} className="tape tape-b" reverse />
+      </section>
+
+      <section className="wrap section" aria-label="In numbers">
+        <div className="bento">
+          {stats.map((st, i) => (
+            <div key={st.label} className={`tile tile-${i + 1}`} data-reveal style={{ '--d': `${i * 90}ms` }}>
+              <span className="tile-num" data-count={st.value}>{st.value}</span>
+              <p className="caption">{st.label}</p>
+            </div>
+          ))}
+          <div className="tile tile-chips" data-reveal style={{ '--d': '270ms' }}>
+            <p className="caption">Built so far</p>
+            <ul className="chips">{categories.map((c) => <li key={c}>{c}</li>)}</ul>
+            <p className="caption" style={{ marginTop: 'auto' }}>Your category isn’t here? Good — tell us about it.</p>
+          </div>
+          <Link to="/work/lakhmanis" className="tile tile-fast" data-reveal style={{ '--d': '360ms' }} data-cursor="Read">
+            <span className="tile-num">2</span>
+            <p className="caption">Days — our fastest full store launch, for Lakhmanis</p>
+          </Link>
         </div>
       </section>
 
-      <section className="wrap section">
-        <hr className="rule" />
-        <div className="stats">
-          {stats.map((s) => (
-            <div key={s.label}>
-              <div className="stat-value">{s.value}</div>
-              <p className="caption stat-label">{s.label}</p>
-            </div>
+      <section className="section" aria-labelledby="work-h">
+        <div className="wrap section-head">
+          <h2 id="work-h" className="display" data-reveal><span className="word-rise">Selected <span className="serif">work</span></span></h2>
+          <Pill ghost to="/work">All work</Pill>
+        </div>
+        <div className="stack">
+          {cases.map((c, i) => (
+            <Link key={c.slug} to={`/work/${c.slug}`} className="stack-card" data-cursor="View"
+              style={{ '--bg': tones[i % tones.length][0], '--fg': tones[i % tones.length][1], top: `calc(72px + ${i * 14}px)` }}>
+              <div className="stack-inner wrap">
+                <div className="stack-text">
+                  <p className="caption">0{i + 1} / 0{cases.length}</p>
+                  <h3 className="stack-name">{c.name}</h3>
+                  <Meta items={c.tags} />
+                  <p className="body-lg">{c.blurb}</p>
+                  <span className="pill pill-inv">View case →</span>
+                </div>
+                <div className="stack-img">
+                  {c.image ? <img src={c.image} alt={`${c.name} storefront`} width="2000" height="1250" loading={i < 2 ? 'eager' : 'lazy'} />
+                    : <span className="display serif">{c.name}</span>}
+                </div>
+              </div>
+            </Link>
           ))}
         </div>
       </section>
 
-      <section className="wrap section" aria-labelledby="range-h">
-        <div className="section-head">
-          <h2 id="range-h" className="heading-sm">Built so far</h2>
-          <p className="caption">Your category isn’t here? Good — tell us about it.</p>
-        </div>
-        <ul className="chips">
-          {categories.map((c) => <li key={c}>{c}</li>)}
-        </ul>
-      </section>
+      {featuredTestimonials.length > 0 && (
+        <section className="band band-rani" aria-labelledby="words-h">
+          <div className="wrap">
+            <h2 id="words-h" className="caption">In their words</h2>
+            <span className="quote-mark" aria-hidden="true" data-parallax="0.15">“</span>
+            <div className={featuredTestimonials.length > 1 ? 'grid-2' : ''}>
+              {featuredTestimonials.map((t) => <Quote key={t.slug} t={t} link large={featuredTestimonials.length === 1} />)}
+            </div>
+          </div>
+        </section>
+      )}
 
-      <section className="wrap section" aria-labelledby="work-h">
-        <div className="section-head">
-          <h2 id="work-h" className="display">Selected work</h2>
-          <Pill ghost to="/work">All work</Pill>
-        </div>
-        <CaseCard c={first} frame="frame-wide" eager />
-        <div className="grid-2" style={{ marginTop: 64 }}>
-          {rest.map((c) => <CaseCard key={c.slug} c={c} />)}
-        </div>
-      </section>
-
-      <section className="wrap section" aria-labelledby="words-h">
-        <h2 id="words-h" className="display" style={{ marginBottom: 40 }}>In their <span className="serif">words</span></h2>
-        <div className="grid-2">
-          {testimonials.map((t) => <Quote key={t.slug} t={t} link />)}
+      <section className="band band-kohl chirmi-band">
+        <div className="wrap two-col">
+          <div className="seed-stage" aria-hidden="true">
+            <svg className="orbit" viewBox="0 0 200 200">
+              <defs><path id="orbit-circle" d="M100,100 m-92,0 a92,92 0 1,1 184,0 a92,92 0 1,1 -184,0" /></defs>
+              <circle cx="100" cy="100" r="96" />
+              <text><textPath href="#orbit-circle">chirmi · ratti · gunja · a seed, a song, a standard · chirmi · ratti · gunja ·</textPath></text>
+            </svg>
+            <Seed className="seed-giant" />
+          </div>
+          <div style={{ display: 'grid', gap: 24, alignContent: 'center', justifyItems: 'start' }}>
+            <p className="caption">Why Chirmi</p>
+            <p className="statement" data-reveal><span className="word-rise">Named after a seed <span className="serif">Rajasthan sings about.</span></span></p>
+            <p className="body-lg">
+              The chirmi is the red seed of a Rajasthani folk song about longing for home — and the seed
+              goldsmiths once weighed gold against. Small, exact, and full of feeling. That’s the standard.
+            </p>
+            <Pill to="/about">Read the story</Pill>
+          </div>
         </div>
       </section>
 
       <section className="wrap section" aria-labelledby="services-h">
-        <h2 id="services-h" className="display" style={{ marginBottom: 40 }}>What we do</h2>
-        <div className="rows">
-          {services.map((s) => (
-            <Link key={s.name} to={s.to} className="row row-3">
-              <span className="row-name">{s.name}</span>
-              <Meta items={s.tags} />
-              <span className="pill-row"><span className="caption" style={{ alignSelf: 'center', marginRight: 12 }}>{s.price}</span><span className="pill">More +</span></span>
+        <h2 id="services-h" className="display" style={{ marginBottom: 40 }} data-reveal><span className="word-rise">What we <span className="serif">do</span></span></h2>
+        <div className="rows rows-sweep">
+          {services.map((sv) => (
+            <Link key={sv.name} to={sv.to} className="row row-3">
+              <span className="row-name">{sv.name}</span>
+              <Meta items={sv.tags} />
+              <span className="pill-row"><span className="caption" style={{ alignSelf: 'center', marginRight: 12 }}>{sv.price}</span><span className="pill">More +</span></span>
             </Link>
           ))}
         </div>
       </section>
 
       <section className="wrap section">
-        <div className="two-col">
-          <p className="statement">A store should look like <span className="serif">your brand,</span> not the theme.</p>
-          <div style={{ display: 'grid', gap: 20, alignContent: 'end' }}>
-            <p className="body-lg">
-              Anyone can give you a clean grid and a fast theme. The work is in the structure: a wedding
-              edit for the clutch label, shop-by-room for the décor brand, festival collections for the
-              handloom store — paths built around how your buyer actually shops.
-            </p>
-            <p className="body-lg">
-              We’ve built for fashion, jewellery, bags, home décor and handloom, and we’re happy to learn
-              something new. Every project starts by understanding your customer, your calendar, and why
-              your carts get abandoned.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="wrap section">
-        <Link to="/about" className="two-col" style={{ alignItems: 'end' }}>
-          <p className="statement">Named after a seed <span className="serif">Rajasthan sings about.</span></p>
-          <div style={{ display: 'grid', gap: 20, justifyItems: 'start' }}>
-            <p className="body-lg">
-              The chirmi is the red seed of a Rajasthani folk song about longing for home — and the seed
-              goldsmiths once weighed gold against. Small, exact, and full of feeling. That’s the standard.
-            </p>
-            <span className="pill">Why Chirmi +</span>
-          </div>
-        </Link>
+        <Scrub text="A store should look like your brand, not the theme. The work is in the structure — a wedding edit for the clutch label, shop-by-room for the décor brand, festival collections for the handloom store —" serif="paths built around how your buyer actually shops." />
       </section>
 
       <section className="wrap section" aria-labelledby="price-h">
         <div className="section-head">
-          <h2 id="price-h" className="display">We publish<br />our prices.</h2>
+          <h2 id="price-h" className="display" data-reveal><span className="word-rise">We publish<br />our <span className="serif">prices.</span></span></h2>
           <p className="body-lg">Because you shouldn’t need a call to find out whether we’re in your range.</p>
         </div>
-        <div className="rows">
-          {packages.map((p) => (
-            <Link key={p.name} to="/studio" className="row row-3">
-              <span className="row-name">{p.name}</span>
-              <span className="row-mid body-sm">{p.blurb}</span>
-              <span className="pill-row"><span className="caption" style={{ alignSelf: 'center', marginRight: 12 }}>{p.price}</span><span className="pill">More +</span></span>
+        <div className="rows rows-sweep">
+          {packages.map((pk) => (
+            <Link key={pk.name} to="/studio" className="row row-3">
+              <span className="row-name">{pk.name}</span>
+              <span className="row-mid body-sm">{pk.blurb}</span>
+              <span className="pill-row"><span className="caption" style={{ alignSelf: 'center', marginRight: 12 }}>{pk.price}</span><span className="pill">More +</span></span>
             </Link>
           ))}
         </div>
@@ -150,7 +196,7 @@ export function Work() {
     <>
       <Seo title="Work" description="Selected Shopify storefronts — fashion, jewellery, bags, home décor and handloom brands." path="/work" />
       <section className="wrap hero">
-        <h1 className="display-xl rise">Work</h1>
+        <h1 className="display-xl hero-title"><Words>Selected</Words> <span className="word serif hl" style={{ '--i': 1 }}><span>work.</span></span></h1>
         <div className="hero-foot rise rise-2">
           <p className="body-lg">Storefronts for fashion, jewellery, bags, home décor and handloom labels — each built around how its buyer shops.</p>
         </div>
@@ -162,9 +208,9 @@ export function Work() {
       </section>
       <section className="wrap section">
         <h2 className="heading-sm" style={{ marginBottom: 24 }}>Brands we’ve worked with</h2>
-        <div className="rows">
+        <div className="rows rows-sweep">
           {cases.map((c) => (
-            <Link key={c.slug} to={`/work/${c.slug}`} className="row row-3">
+            <Link key={c.slug} to={`/work/${c.slug}`} className="row row-3" data-preview={c.image || undefined}>
               <span className="row-name">{c.name}</span>
               <span className="row-mid"><Meta items={c.tags} /></span>
               <span className="pill">More +</span>
@@ -182,19 +228,22 @@ export function CaseDetail() {
   if (!c) return <Navigate to="/work" replace />
   const next = getNextCase(slug)
   const t = getTestimonial(slug)
+  const tone = tones[cases.findIndex((x) => x.slug === slug) % tones.length]
   const blocks = [['The brand', c.brand], ['The brief', c.brief], ['What we built', c.built], ['The result', c.result]].filter(([, b]) => b)
   return (
     <>
       <Seo title={c.name} description={c.blurb} path={`/work/${c.slug}`} />
-      <section className="wrap hero">
-        <Meta items={c.tags} />
-        <h1 className="display-xl rise" style={{ marginTop: 20 }}>{c.name}</h1>
-        <div className="hero-foot rise rise-2">
-          <p className="body-lg">{c.meta}</p>
-          {c.url && <Pill href={c.url}>Visit live store ↗</Pill>}
+      <section className="case-hero" style={{ '--bg': tone[0], '--fg': tone[1] }}>
+        <div className="wrap">
+          <Meta items={c.tags} />
+          <h1 className="display-xl hero-title" style={{ marginTop: 20 }}><Words>{c.name}</Words></h1>
+          <div className="hero-foot rise rise-2">
+            <p className="body-lg">{c.meta}</p>
+            {c.url && <Pill href={c.url}>Visit live store ↗</Pill>}
+          </div>
         </div>
       </section>
-      <section className="wrap section">
+      <section className="wrap case-shot" data-reveal>
         {c.image
           ? <div className="frame frame-land"><img src={c.image} alt={`${c.name} storefront homepage`} width="2000" height="1250" /></div>
           : <div className="frame frame-land frame-type"><span className="display serif">{c.name}</span></div>}
@@ -202,7 +251,7 @@ export function CaseDetail() {
       <section className="wrap section">
         <div className="rows">
           {blocks.map(([h, b]) => (
-            <div key={h} className="detail-grid" style={{ padding: '20px 0', borderBottom: '1px solid var(--color-carbon-black)' }}>
+            <div key={h} className="detail-grid" data-reveal style={{ padding: '20px 0', borderBottom: '1px solid var(--color-carbon-black)' }}>
               <p className="caption">{h}</p>
               <p className="body-lg" style={{ maxWidth: '56ch', fontSize: 22, lineHeight: 1.17 }}>{b}</p>
             </div>
@@ -210,8 +259,11 @@ export function CaseDetail() {
         </div>
       </section>
       {t && (
-        <section className="wrap section">
-          <Quote t={t} large />
+        <section className="band band-rani">
+          <div className="wrap">
+            <span className="quote-mark" aria-hidden="true">“</span>
+            <Quote t={t} large />
+          </div>
         </section>
       )}
       {c.gallery && (
@@ -246,7 +298,7 @@ export function CaseDetail() {
       )}
       <section className="wrap section">
         <hr className="rule" />
-        <Link to={`/work/${next.slug}`} className="section-head" style={{ marginTop: 20 }}>
+        <Link to={`/work/${next.slug}`} className="section-head next-case" style={{ marginTop: 20 }} data-cursor="Next">
           <span><p className="caption">Next case</p><span className="display">{next.name}</span></span>
           <span className="pill">View case</span>
         </Link>
@@ -271,7 +323,7 @@ export function Studio() {
       <section className="wrap section">
         <div className="grid-3">
           {packages.map((p, i) => (
-            <div key={p.name} className={`panel${i === 1 ? ' panel-warm' : ''}`}>
+            <div key={p.name} className={`panel${i === 1 ? ' panel-warm' : ''}${i === 2 ? ' panel-dark' : ''}`} data-reveal style={{ '--d': `${i * 100}ms` }}>
               <p className="caption">{p.timeline}</p>
               <h2 className="subheading">{p.name}</h2>
               <p className="price">{p.price}</p>
@@ -349,7 +401,7 @@ export function Brands() {
         </div>
         <div className="grid-3">
           {brandTiers.map((t) => (
-            <div key={t.name} className="panel">
+            <div key={t.name} className="panel" data-reveal>
               <h3 className="subheading">{t.name}</h3>
               <p className="price">{t.price}</p>
               <p className="body-sm">{t.note}</p>
@@ -378,13 +430,15 @@ export function About() {
     <>
       <Seo title="About" description="Chirmi is the red seed Rajasthan sings about, and the seed goldsmiths once weighed gold against. Small, exact, and full of feeling." path="/about" />
       <section className="wrap hero">
-        <h1 className="display-xl rise">A small seed.<br />A long <span className="serif">song.</span></h1>
+        <Seed className="float f1" data-depth="1.2" />
+        <Seed className="float f3" data-depth="0.8" />
+        <h1 className="display-xl hero-title"><Words>A small seed.</Words><br /><Words>A long</Words> <span className="word serif hl" style={{ '--i': 5 }}><span>song.</span></span></h1>
         <div className="hero-foot rise rise-2">
           <p className="body-lg">Chirmi is a tiny red seed with a black eye. In Rajasthan, it’s also a feeling.</p>
         </div>
       </section>
       <section className="wrap section">
-        <div className="two-col">
+        <div className="two-col" data-reveal>
           <p className="caption">In Rajasthan</p>
           <div style={{ display: 'grid', gap: 20 }}>
             <p className="body-lg" style={{ fontSize: 22, lineHeight: 1.17 }}>
@@ -401,7 +455,7 @@ export function About() {
         </div>
       </section>
       <section className="wrap section">
-        <div className="two-col">
+        <div className="two-col" data-reveal>
           <p className="caption">The measure</p>
           <div style={{ display: 'grid', gap: 20 }}>
             <p className="body-lg" style={{ fontSize: 22, lineHeight: 1.17 }}>

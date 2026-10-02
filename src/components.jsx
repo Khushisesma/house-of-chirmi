@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useId, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import { site, navLinks, whatsappLink } from './content'
+import { site, navLinks, whatsappLink, categories } from './content'
+import { useSiteEffects } from './effects'
 
 export function Seo({ title, description = site.tagline, path = '/' }) {
   const full = title ? `${title} — ${site.name}` : `${site.name} — Shopify stores for independent brands`
@@ -30,9 +31,56 @@ export const Wordmark = () => (
 
 export const Pill = ({ to, href, children, ghost, ...rest }) => {
   const cls = `pill${ghost ? ' pill-ghost' : ''}`
-  if (href) return <a className={cls} href={href} target="_blank" rel="noopener noreferrer" {...rest}>{children}</a>
-  return <Link className={cls} to={to} {...rest}>{children}</Link>
+  if (href) return <a className={cls} href={href} target="_blank" rel="noopener noreferrer" data-magnetic {...rest}><span>{children}</span></a>
+  return <Link className={cls} to={to} data-magnetic {...rest}><span>{children}</span></Link>
 }
+
+/* The chirmi seed: glossy red with a black eye. */
+export const Seed = ({ className = '', style, ...rest }) => {
+  const id = useId().replace(/:/g, '')
+  return (
+  <svg className={`seed ${className}`} style={style} viewBox="0 0 120 84" aria-hidden="true" {...rest}>
+    <defs>
+      <clipPath id={`c${id}`}><ellipse cx="60" cy="42" rx="58" ry="40" /></clipPath>
+      <radialGradient id={`g${id}`} cx="0.62" cy="0.3" r="0.7">
+        <stop offset="0" stopColor="#ff5a4a" /><stop offset="0.55" stopColor="#e2231a" /><stop offset="1" stopColor="#9c120c" />
+      </radialGradient>
+    </defs>
+    <g clipPath={`url(#c${id})`}>
+      <rect width="120" height="84" fill={`url(#g${id})`} />
+      <ellipse cx="6" cy="42" rx="34" ry="44" fill="#14100e" />
+    </g>
+    <ellipse cx="78" cy="22" rx="16" ry="6" fill="#fff" opacity="0.55" transform="rotate(-12 78 22)" />
+  </svg>
+  )
+}
+
+/* Infinite ticker. Items are duplicated so the loop is seamless. */
+export const Marquee = ({ items, className = '', reverse }) => {
+  const row = items.flatMap((t, i) => [<span key={`t${i}`}>{t}</span>, <Seed key={`s${i}`} className="seed-inline" />])
+  return (
+    <div className={`marquee ${className}${reverse ? ' marquee-rev' : ''}`} aria-hidden="true">
+      <div className="marquee-track">{row}{row.map((el, i) => <el.type key={`d${i}`} {...el.props} />)}</div>
+    </div>
+  )
+}
+
+/* Rotating circular badge with a seed in the middle. */
+export const SpinBadge = ({ to = '/contact', text = 'Start a project • Start a project • ' }) => (
+  <Link to={to} className="spin-badge" aria-label="Start a project" data-cursor="Hello">
+    <svg viewBox="0 0 200 200" aria-hidden="true">
+      <defs><path id="badge-circle" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" /></defs>
+      <text><textPath href="#badge-circle">{text}</textPath></text>
+    </svg>
+    <Seed className="spin-badge-seed" />
+  </Link>
+)
+
+/* Wrap each word so headlines can rise word by word. */
+export const Words = ({ children, className = '' }) =>
+  String(children).split(' ').map((w, i) => (
+    <Fragment key={i}><span className={`word ${className}`} style={{ '--i': i }}><span>{w}</span></span>{' '}</Fragment>
+  ))
 
 export const Meta = ({ items }) => (
   <p className="meta">{items.map((t) => <span key={t}>{t}</span>)}</p>
@@ -51,7 +99,7 @@ export function Quote({ t, large, link }) {
 
 export function CaseCard({ c, frame = 'frame-land', eager }) {
   return (
-    <Link to={`/work/${c.slug}`} className="case-card">
+    <Link to={`/work/${c.slug}`} className="case-card" data-cursor="View" data-reveal>
       <Meta items={c.tags} />
       <h3 className="subheading">{c.name}</h3>
       <div className={`frame ${frame}${c.image ? '' : ' frame-type'}`}>
@@ -80,6 +128,7 @@ function Header() {
 
   return (
     <header className="header">
+      <div className="progress" aria-hidden="true" />
       <div className="wrap header-row">
         <Wordmark />
         <nav className="nav" aria-label="Primary">
@@ -97,7 +146,6 @@ function Header() {
           </a>
         </nav>
       )}
-      <hr className="rule" />
     </header>
   )
 }
@@ -106,16 +154,15 @@ function Footer() {
   const year = new Date().getFullYear()
   return (
     <footer className="footer">
+      <Marquee items={['Tell us what you’re building', ...categories, 'And whatever’s next']} className="marquee-red" />
       <div className="wrap">
-        <hr className="rule" />
         <div className="footer-cta">
-          <h2 className="display">Tell us what<br />you’re building.</h2>
-          <div className="pill-row" style={{ marginTop: 32 }}>
+          <h2 className="display-xl" data-reveal><span className="word-rise">Tell us what<br />you’re <span className="serif">building.</span></span></h2>
+          <div className="pill-row" style={{ marginTop: 40 }}>
             <Pill to="/contact">Start a project</Pill>
             <Pill ghost href={whatsappLink('Hi House of Chirmi, I’d like to talk about my brand.')}>WhatsApp</Pill>
           </div>
         </div>
-        <hr className="rule" />
         <div className="footer-cols">
           <div>
             <p className="caption">Studio</p>
@@ -137,7 +184,10 @@ function Footer() {
             <p>© {year} House of Chirmi</p>
           </div>
         </div>
-        <div className="footer-giant" aria-hidden="true">Chirmi®</div>
+        <div className="footer-giant" aria-hidden="true">
+          {'CHIRMI'.split('').map((l, i) => <span key={i} style={{ '--i': i }}>{l}</span>)}
+          <Seed className="footer-seed" />
+        </div>
       </div>
     </footer>
   )
@@ -146,6 +196,7 @@ function Footer() {
 export function Layout() {
   const { pathname } = useLocation()
   useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  useSiteEffects(pathname)
   return (
     <>
       <a className="skip" href="#main">Skip to content</a>
