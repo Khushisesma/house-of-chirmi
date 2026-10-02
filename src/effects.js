@@ -75,7 +75,25 @@ export function useSiteEffects(pathname) {
 
     if (!fine) return () => cleanups.forEach((c) => c())
 
-    /* Custom cursor */
+    /* Custom cursor — turns black wherever it would sit on red or pink */
+    const redCache = new WeakMap()
+    const SWEEPS = '.stack, .rows-sweep a.row, .view-all, .pill, .seed'
+    const onRed = (el) => {
+      if (!el || el.nodeType !== 1) return false
+      if (el.closest(SWEEPS)) return true
+      if (redCache.has(el)) return redCache.get(el)
+      let red = false
+      for (let n = el; n && n !== document.documentElement; n = n.parentElement) {
+        const m = getComputedStyle(n).backgroundColor.match(/\d+(\.\d+)?/g)
+        if (!m || (m[3] !== undefined && +m[3] === 0)) continue
+        const [r, g, b] = m.map(Number)
+        red = r > 170 && g < 100 // seed red and rani pink
+        break
+      }
+      redCache.set(el, red)
+      return red
+    }
+
     const cur = document.createElement('div')
     cur.className = 'cursor'
     cur.innerHTML = '<span class="cursor-label"></span>'
@@ -94,7 +112,7 @@ export function useSiteEffects(pathname) {
       const text = t?.closest('[data-cursor]')?.dataset.cursor || ''
       cur.classList.toggle('is-link', !!t)
       cur.classList.toggle('is-label', !!text)
-      cur.classList.toggle('is-dark', !!e.target.closest?.('.stack, .view-all'))
+      cur.classList.toggle('is-dark', onRed(e.target))
       label.textContent = text
       // hero seeds drift away from the pointer
       document.querySelectorAll('[data-depth]').forEach((s) => {

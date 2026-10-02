@@ -291,9 +291,9 @@ a.row:hover .pill { background: var(--kohl); }
 
 /* Custom cursor */
 .cursor { position: fixed; left: 0; top: 0; z-index: 200; pointer-events: none; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: var(--chirmi); mix-blend-mode: multiply; transition: width .3s, height .3s, margin .3s, background .3s; display: grid; place-items: center; }
-.cursor.is-link { width: 44px; height: 44px; margin: -22px 0 0 -22px; background: color-mix(in srgb, var(--chirmi) 35%, transparent); }
-.cursor.is-label { width: 92px; height: 92px; margin: -46px 0 0 -46px; background: var(--chirmi); mix-blend-mode: normal; }
-.cursor-label { color: var(--sand); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; opacity: 0; transition: opacity .2s; }
+.cursor.is-link { width: 38px; height: 38px; margin: -19px 0 0 -19px; background: color-mix(in srgb, var(--chirmi) 35%, transparent); }
+.cursor.is-label { width: 80px; height: 80px; margin: -40px 0 0 -40px; background: var(--chirmi); mix-blend-mode: normal; }
+.cursor-label { color: var(--sand); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; opacity: 0; transition: opacity .2s; }
 .cursor.is-label .cursor-label { opacity: 1; }
 /* Black cursor over the coloured work cards, so it doesn't vanish on red */
 .cursor.is-dark { background: var(--kohl); mix-blend-mode: normal; }
