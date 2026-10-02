@@ -295,6 +295,9 @@ a.row:hover .pill { background: var(--kohl); }
 .cursor.is-label { width: 92px; height: 92px; margin: -46px 0 0 -46px; background: var(--chirmi); mix-blend-mode: normal; }
 .cursor-label { color: var(--sand); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; opacity: 0; transition: opacity .2s; }
 .cursor.is-label .cursor-label { opacity: 1; }
+/* Black cursor over the coloured work cards, so it doesn't vanish on red */
+.cursor.is-dark { background: var(--kohl); mix-blend-mode: normal; }
+.cursor.is-dark.is-link:not(.is-label) { background: color-mix(in srgb, var(--kohl) 45%, transparent); }
 @media (pointer: fine) { .motion body, .motion a, .motion button { cursor: none; } }
 
 /* Floating screenshot on list rows */

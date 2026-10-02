@@ -94,6 +94,7 @@ export function useSiteEffects(pathname) {
       const text = t?.closest('[data-cursor]')?.dataset.cursor || ''
       cur.classList.toggle('is-link', !!t)
       cur.classList.toggle('is-label', !!text)
+      cur.classList.toggle('is-dark', !!e.target.closest?.('.stack'))
       label.textContent = text
       // hero seeds drift away from the pointer
       document.querySelectorAll('[data-depth]').forEach((s) => {
