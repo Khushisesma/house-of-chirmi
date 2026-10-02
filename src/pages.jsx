@@ -397,6 +397,7 @@ export function Contact() {
             <a className="subheading" href={whatsappLink('Hi House of Chirmi!')} target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
             <a className="subheading" href={`mailto:${site.email}`} style={{ wordBreak: 'break-all' }}>{site.email}</a>
             <a className="subheading" href={site.instagram} target="_blank" rel="noopener noreferrer">{site.instagramLabel} ↗</a>
+            <a className="subheading" href={site.studioInstagram} target="_blank" rel="noopener noreferrer">{site.studioInstagramLabel} ↗</a>
           </div>
           <form className="form" onSubmit={onSubmit}>
             <div className="form-2">

@@ -115,7 +115,8 @@ function Footer() {
           </div>
           <div>
             <p className="caption">Follow</p>
-            <a href={site.instagram} target="_blank" rel="noopener noreferrer">Instagram {site.instagramLabel}</a>
+            <a href={site.instagram} target="_blank" rel="noopener noreferrer">{site.instagramLabel}</a>
+            <a href={site.studioInstagram} target="_blank" rel="noopener noreferrer">{site.studioInstagramLabel} — websites</a>
           </div>
           <div>
             <p className="caption">Based in</p>

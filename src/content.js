@@ -8,6 +8,8 @@ export const site = {
   email: 'khushisesma25@gmail.com',
   instagram: 'https://instagram.com/houseofchirmi',
   instagramLabel: '@houseofchirmi',
+  studioInstagram: 'https://instagram.com/houseofchirmi.studio',
+  studioInstagramLabel: '@houseofchirmi.studio',
   whatsappNumber: '919660570279',
   whatsappLabel: '+91 96605 70279',
   location: 'India — working remotely with brands everywhere',
