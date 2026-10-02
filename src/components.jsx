@@ -171,7 +171,7 @@ function Footer() {
           <div>
             <p className="caption">Contact</p>
             <a href={`mailto:${site.email}`}>{site.email}</a>
-            <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">{site.whatsappLabel}</a>
+            <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
           </div>
           <div>
             <p className="caption">Follow</p>

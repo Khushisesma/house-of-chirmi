@@ -5,13 +5,12 @@ export const site = {
   name: 'House of Chirmi',
   url: 'https://www.houseofchirmi.com',
   tagline: 'Shopify storefronts and brand partnerships for independent brands — fashion, jewellery, home décor, accessories and whatever you’re making next.',
-  email: 'khushisesma25@gmail.com',
+  email: 'houseofchirmi@gmail.com',
   instagram: 'https://instagram.com/houseofchirmi',
   instagramLabel: '@houseofchirmi',
   studioInstagram: 'https://instagram.com/houseofchirmi.studio',
   studioInstagramLabel: '@houseofchirmi.studio',
   whatsappNumber: '919660570279',
-  whatsappLabel: '+91 96605 70279',
   location: 'India — working remotely with brands everywhere',
 }
 
