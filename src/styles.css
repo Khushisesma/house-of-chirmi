@@ -479,3 +479,10 @@ html:not(.motion) .scrub .w { color: var(--kohl); }
 .hero { position: relative; }
 .hero .float { z-index: 0; }
 .hero > *:not(.float) { position: relative; z-index: 1; }
+
+/* View-all link after the work stack */
+.view-all { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; padding: 28px 0; border-top: 1px solid var(--kohl); border-bottom: 1px solid var(--kohl); transition: color .3s, padding .35s cubic-bezier(.2,.7,.2,1); position: relative; isolation: isolate; }
+.view-all::before { content: ''; position: absolute; inset: 0 calc(var(--gutter) * -1); z-index: -1; background: var(--chirmi); transform: scaleY(0); transform-origin: bottom; transition: transform .45s cubic-bezier(.2,.7,.2,1); }
+.view-all:hover { color: var(--sand); padding-left: 16px; padding-right: 16px; }
+.view-all:hover::before { transform: none; }
+.view-all-text { font-size: clamp(40px, 7vw, 110px); font-weight: 300; text-transform: uppercase; letter-spacing: -0.05em; line-height: .85; }

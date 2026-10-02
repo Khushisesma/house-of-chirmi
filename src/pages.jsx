@@ -39,6 +39,7 @@ const Scrub = ({ text, serif }) => (
 )
 
 export function Home() {
+  const featured = cases.slice(0, 3)
   return (
     <>
       <Seo path="/" />
@@ -99,12 +100,12 @@ export function Home() {
           <Pill ghost to="/work">All work</Pill>
         </div>
         <div className="stack">
-          {cases.map((c, i) => (
+          {featured.map((c, i) => (
             <Link key={c.slug} to={`/work/${c.slug}`} className="stack-card" data-cursor="View"
               style={{ '--bg': tones[i % tones.length][0], '--fg': tones[i % tones.length][1], top: `calc(72px + ${i * 14}px)` }}>
               <div className="stack-inner wrap">
                 <div className="stack-text">
-                  <p className="caption">0{i + 1} / 0{cases.length}</p>
+                  <p className="caption">0{i + 1} / 0{featured.length}</p>
                   <h3 className="stack-name">{c.name}</h3>
                   <Meta items={c.tags} />
                   <p className="body-lg">{c.blurb}</p>
@@ -117,6 +118,12 @@ export function Home() {
               </div>
             </Link>
           ))}
+        </div>
+        <div className="wrap">
+          <Link to="/work" className="view-all" data-cursor="All work">
+            <span className="caption">+{cases.length - featured.length} more projects</span>
+            <span className="view-all-text">View all <span className="serif">work</span> →</span>
+          </Link>
         </div>
       </section>
 
