@@ -217,6 +217,10 @@ a.row:hover .pill { background: var(--color-ink); }
 .frame-type .display { font-style: italic; }
 
 /* Category chips */
+.gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.gallery img { width: 100%; height: auto; display: block; }
+@media (min-width: 760px) { .gallery { grid-template-columns: repeat(3, 1fr); gap: var(--col-gap); } }
+
 .chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .chips li { border: 1px solid var(--color-carbon-black); border-radius: 999px; padding: 8px 16px; font-size: 15px; }
 

@@ -214,6 +214,16 @@ export function CaseDetail() {
           <Quote t={t} large />
         </section>
       )}
+      {c.gallery && (
+        <section className="wrap section">
+          <div className="gallery">
+            {c.gallery.map((g, i) => (
+              <img key={g} src={g} alt={`${c.name} storefront, launch reel frame ${i + 1}`} width="720" height="1280" loading="lazy" />
+            ))}
+          </div>
+          <p className="caption" style={{ textAlign: 'center', marginTop: 12 }}>Frames from our launch reels — desktop and mobile</p>
+        </section>
+      )}
       {(c.long || c.mobile) && (
         <section className="wrap section">
           <div className="showcase">
