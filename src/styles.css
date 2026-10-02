@@ -199,6 +199,33 @@ a.row:hover .pill { background: var(--color-ink); }
 .detail-grid { display: grid; grid-template-columns: 1fr; gap: 24px var(--col-gap); }
 @media (min-width: 900px) { .detail-grid { grid-template-columns: 1fr 2fr; } }
 .phone { max-width: 360px; margin: 0 auto; background: var(--color-parchment); padding: 24px; }
+.phone img { display: block; width: 100%; height: auto; border-radius: 18px; }
+
+/* Case showcase: scrollable full homepage + phone */
+.showcase { display: grid; gap: 48px var(--col-gap); align-items: start; }
+.showcase figure { margin: 0; display: grid; gap: 12px; }
+.showcase figcaption { text-align: center; }
+.browser {
+  height: min(78vh, 760px); overflow-y: auto; background: var(--color-ash);
+  border: 1px solid var(--color-carbon-black); border-top-width: 14px; overscroll-behavior: contain;
+}
+.browser img { display: block; width: 100%; height: auto; }
+@media (min-width: 900px) { .showcase { grid-template-columns: 1.7fr 1fr; } }
+
+/* Typographic frame for stores without a live screenshot */
+.frame-type { display: grid; place-items: center; background: var(--color-parchment); text-align: center; padding: 24px; }
+.frame-type .display { font-style: italic; }
+
+/* Category chips */
+.chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.chips li { border: 1px solid var(--color-carbon-black); border-radius: 999px; padding: 8px 16px; font-size: 15px; }
+
+/* Testimonials */
+.quote { margin: 0; border-top: 1px solid var(--color-carbon-black); padding-top: 20px; display: grid; gap: 20px; align-content: start; }
+.quote blockquote { margin: 0; }
+.quote p { font-size: 22px; line-height: 1.25; letter-spacing: -0.01em; max-width: 52ch; }
+.quote a { text-decoration: underline; text-underline-offset: 3px; }
+.quote-lg p { font-size: clamp(24px, 3.2vw, 40px); line-height: 1.12; max-width: 32ch; }
 
 /* ---------- Motion ---------- */
 @media (prefers-reduced-motion: no-preference) {

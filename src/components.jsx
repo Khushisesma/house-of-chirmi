@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async'
 import { site, navLinks, whatsappLink } from './content'
 
 export function Seo({ title, description = site.tagline, path = '/' }) {
-  const full = title ? `${title} — ${site.name}` : `${site.name} — Shopify stores for Indian craft brands`
+  const full = title ? `${title} — ${site.name}` : `${site.name} — Shopify stores for independent brands`
   const url = `${site.url}${path === '/' ? '' : path}`
   return (
     <Helmet>
@@ -38,13 +38,26 @@ export const Meta = ({ items }) => (
   <p className="meta">{items.map((t) => <span key={t}>{t}</span>)}</p>
 )
 
+export function Quote({ t, large, link }) {
+  return (
+    <figure className={`quote${large ? ' quote-lg' : ''}`}>
+      <blockquote><p>“{t.quote}”</p></blockquote>
+      <figcaption className="caption">
+        {t.by}, {link ? <Link to={`/work/${t.slug}`}>{t.brand}</Link> : t.brand}
+      </figcaption>
+    </figure>
+  )
+}
+
 export function CaseCard({ c, frame = 'frame-land', eager }) {
   return (
     <Link to={`/work/${c.slug}`} className="case-card">
       <Meta items={c.tags} />
       <h3 className="subheading">{c.name}</h3>
-      <div className={`frame ${frame}`}>
-        <img src={c.image} alt={`${c.name} storefront, designed by House of Chirmi`} width="1600" height="1000" loading={eager ? 'eager' : 'lazy'} />
+      <div className={`frame ${frame}${c.image ? '' : ' frame-type'}`}>
+        {c.image
+          ? <img src={c.image} alt={`${c.name} storefront, designed by House of Chirmi`} width="2000" height="1250" loading={eager ? 'eager' : 'lazy'} />
+          : <span className="display serif">{c.name}</span>}
       </div>
       <div className="case-card-foot">
         <p className="body-sm">{c.blurb}</p>

@@ -4,7 +4,7 @@
 export const site = {
   name: 'House of Chirmi',
   url: 'https://www.houseofchirmi.com',
-  tagline: 'Shopify storefronts and brand partnerships for Indian craft and occasion-wear brands.',
+  tagline: 'Shopify storefronts and brand partnerships for independent brands — fashion, jewellery, home décor, accessories and whatever you’re making next.',
   email: 'khushisesma25@gmail.com',
   instagram: 'https://instagram.com/houseofchirmi',
   instagramLabel: '@houseofchirmi',
@@ -17,9 +17,28 @@ export const site = {
 
 // Keep these honest. Update the numbers as they grow.
 export const stats = [
-  { value: '5', label: 'Storefronts live' },
-  { value: '1', label: 'Brand under partnership' },
+  { value: '7', label: 'Storefronts built' },
+  { value: '5', label: 'Categories — fashion to home décor' },
   { value: '10', label: 'Days to launch' },
+]
+
+// Categories we've built for. Shown on the home page as proof of range.
+export const categories = ['Fashion & occasion wear', 'Jewellery', 'Bags & accessories', 'Home décor', 'Handloom']
+
+// Real client words — keep these verbatim. Source: @houseofchirmi.studio posts.
+export const testimonials = [
+  {
+    quote: 'She built the entire website in just 2 days — and not just built it, made it absolutely perfect. The whole process was smooth, professional, and honestly stress-free. If you’re looking for someone who just gets your vision and delivers beyond expectations — she’s the one.',
+    by: 'Mili, Founder',
+    brand: 'Lakhmanis',
+    slug: 'lakhmanis',
+  },
+  {
+    quote: 'She understood my vision so effortlessly and translated it into a website that’s both stunning and user-friendly. Her attention to detail, aesthetic sense, and dedication to perfecting every element made the process smooth and joyful.',
+    by: 'Founder',
+    brand: 'Soven Home',
+    slug: 'soven-home',
+  },
 ]
 
 export const navLinks = [
@@ -34,7 +53,7 @@ export const services = [
   {
     name: 'Shopify storefronts',
     tags: ['Design', 'Build', 'Launch'],
-    body: 'Fast, considered stores for craft labels — built to sell at a premium price point without apology.',
+    body: 'Fast, considered stores for independent labels — built to look like the brand and sell like a business.',
     price: 'From ₹35,000',
     to: '/studio',
   },
@@ -119,7 +138,7 @@ export const commitments = [
   { title: 'We publish our prices.', body: 'No discovery call required to find out if we’re affordable.' },
   { title: 'You own everything.', body: 'Every file, every login, every asset. Always.' },
   { title: 'We say no.', body: 'If we’re not right for your brand, we’ll tell you and point you somewhere better.' },
-  { title: 'We only do one thing.', body: 'Indian craft and occasion wear. That’s the whole list.' },
+  { title: 'We learn your category.', body: 'Sarees, clutches or candle holders — we study how your buyer shops before we design a thing.' },
 ]
 
 export const needOptions = ['New Shopify store', 'Redesign / migration', 'Brand partnership', 'Not sure yet']
@@ -131,54 +150,87 @@ export const cases = [
   {
     slug: 'rawish-designs',
     name: 'Rawish Designs',
-    tags: ['Kashmiri craft', 'Shopify', 'Storefront'],
+    tags: ['Kashmiri craft', 'Fashion', 'Shopify'],
     meta: '₹10,500 average order value',
     url: 'https://www.rawishdesigns.com',
     image: '/images/rawish-desktop.webp',
-    mobile: '/images/rawishdesigns-mobile.webp',
+    mobile: '/images/rawish-mobile.webp',
+    long: '/images/rawish-long.webp',
     blurb: 'Three named collections, a premium price point, and a buyer who needs to trust before she spends.',
     brand: 'A Kashmiri craft label selling embroidered pieces at a premium price point, to a buyer who researches before she spends.',
     brief: 'Make the price feel earned. The old store led with fabric; buyers arriving for a wedding or a festival couldn’t find their way in.',
-    built: 'A storefront organised around occasion rather than material — three named collections (Bāgh-e-Firdaus, Shān-e-Mehfil, Husn-e-Waadi), trust signals surfaced early, and product pages that answer the question before it becomes a doubt.',
+    built: 'A storefront organised around occasion rather than material — three named collections (Bāgh-e-Firdaus, Shān-e-Mehfil, Husn-e-Waadi), each with its own Devanagari title and campaign scene, trust signals surfaced early, and product pages that answer the question before it becomes a doubt.',
     result: 'A ₹10,500 average order value on a store that reads as considered, not clearance.',
+  },
+  {
+    slug: 'cannish-pitara',
+    name: 'Cannish Pitara',
+    tags: ['Bags & accessories', 'Vegan', 'Shopify'],
+    meta: '100 handmade bags, everyday to wedding',
+    url: 'https://www.cannishpitara.in',
+    image: '/images/cannishpitara-desktop.webp',
+    mobile: '/images/cannishpitara-mobile.webp',
+    long: '/images/cannishpitara-long.webp',
+    blurb: 'Handmade vegan bags and clutches — a store that sells the office tote and the wedding potli side by side.',
+    brand: 'A Made-in-India label of handmade vegan bags — totes, slings, batuas, potlis and festive clutches — for western and ethnic looks alike.',
+    brief: 'One catalogue, very different buyers: someone commuting to work, someone packing for a trip, someone dressing for a wedding. Each needed a way in.',
+    built: 'Navigation built around when you’ll carry it, not what it’s made of — Office and Work, Travel Ready, Slings for All, a Wedding & Festive edit — plus an Under ₹1,000 entry point and campaign banners that change with the season.',
+    result: '',
   },
   {
     slug: 'lakhmanis',
     name: 'Lakhmanis',
-    tags: ['Ethnic wear', 'Shopify', 'Festive'],
-    meta: 'Kurtis to lehengas, ₹699 – ₹9,999',
+    tags: ['Fashion', 'Festive', 'Shopify'],
+    meta: 'Built in two days · kurtis to lehengas, ₹699 – ₹9,999',
     url: 'https://www.lakhmanis.com',
     image: '/images/lakhmanis-desktop.webp',
     mobile: '/images/lakhmanis-mobile.webp',
-    blurb: 'An ethnic-wear store for everyday kurtis to festive lehengas — heritage meets modernity.',
-    brand: 'An ethnic-wear label selling kurtis, suits, anarkalis, co-ord sets and lehengas — “heritage meets modernity”.',
-    brief: '',
-    built: 'A storefront whose navigation follows how she shops: festive and Navratri edits up front, then clear paths by silhouette — co-ords, dresses, anarkali, lehenga, short kurtis — across a wide price range.',
+    long: '/images/lakhmanis-long.webp',
+    blurb: 'A full fashion storefront, from everyday kurtis to festive lehengas — designed and launched in two days.',
+    brand: 'A womenswear label selling kurtis, suits, anarkalis, co-ord sets and lehengas — “heritage meets modernity”.',
+    brief: 'Get a complete, credible store live fast — without it looking rushed.',
+    built: 'A storefront whose navigation follows how she shops: trending and festive edits up front, then clear paths by silhouette — co-ords, dresses, anarkali, lehenga, short kurtis — across a wide price range. Responsive across phone, tablet and desktop.',
+    result: 'Designed, built and handed over in two days.',
+  },
+  {
+    slug: 'soven-home',
+    name: 'Soven Home',
+    tags: ['Home décor', 'Lifestyle', 'Shopify'],
+    meta: 'Vases, serveware, candle holders, planters',
+    url: '',
+    image: '',
+    mobile: '',
+    blurb: 'A soft, calm home-décor store for handpicked pieces — cake stands to planters.',
+    brand: 'A home-décor label curating handpicked pieces for every corner — vases, candle holders, serveware, dinnerware, mugs and planters — delivering across India.',
+    brief: 'Move a brand that sold through Instagram DMs onto a store that feels as calm and curated as the products.',
+    built: 'A sleek Shopify storefront in soft blush and stone, with shopping paths by room and ritual — serveware, candle holders, vases, planters — so browsing feels like walking through a well-styled home.',
     result: '',
   },
   {
     slug: 'dumroo',
     name: 'Dumroo',
-    tags: ['Jewellery', 'Shopify', 'Brand-led'],
+    tags: ['Jewellery', 'Redesign', 'Shopify'],
     meta: 'Named collections: Chaand, Dhaara, Padma',
     url: 'https://www.shopdumroo.com',
     image: '/images/dumroo-desktop.webp',
     mobile: '/images/dumroo-mobile.webp',
-    blurb: 'Jewellery for the woman who writes her own rules — an editorial store that lets the photography carry the brand.',
+    long: '/images/dumroo-long.webp',
+    blurb: 'A store redesign for jewellery “for the woman who writes her own rules” — editorial, and led by photography.',
     brand: 'A jewellery label for the woman who writes her own rules, with a strong photographic identity and named collections.',
-    brief: '',
+    brief: 'Redesign an existing store so it finally looked as good as the brand’s campaign photography.',
     built: 'An editorial, image-led storefront: full-bleed campaign photography, a quiet header, and shopping paths by piece — anklets, bracelets, earrings, necklaces, rings — alongside story-led collections like Chaand, Dhaara and Padma.',
     result: '',
   },
   {
     slug: 'reba-aura',
     name: 'Reba Aura',
-    tags: ['Heritage jewellery', 'Shopify', 'Large catalogue'],
+    tags: ['Jewellery', 'Large catalogue', 'Shopify'],
     meta: '15+ categories, from haathphool to heritage watches',
     url: 'https://www.rebaaura.in',
     image: '/images/rebaaura-desktop.webp',
     mobile: '/images/rebaaura-mobile.webp',
-    blurb: 'A heritage-jewellery store with a deep catalogue — necklaces, hasli, haathphool, kaanchain and heritage watches.',
+    long: '/images/rebaaura-long.webp',
+    blurb: 'A deep catalogue made easy to browse — necklaces, hasli, haathphool, kaanchain and heritage watches.',
     brand: 'A heritage and occasion jewellery label with a deep catalogue across traditional pieces and accessories.',
     brief: '',
     built: 'A rich, gold-on-black storefront with a two-row navigation that makes a large catalogue browsable — necklaces, earrings, hand and hair accessories, brooches, heritage watches — plus a “sale under ₹2,499” entry point for first-time buyers.',
@@ -187,12 +239,13 @@ export const cases = [
   {
     slug: 'kaarmugizh',
     name: 'Kaarmugizh',
-    tags: ['Handloom', 'Shopify', '300+ SKUs'],
+    tags: ['Handloom', 'Menswear & kids', '300+ SKUs'],
     meta: '300+ products across women, men, kids and jewellery',
     url: 'https://www.kaarmugizh.com',
     image: '/images/kaarmugizh-desktop.webp',
     mobile: '/images/kaarmugizh-mobile.webp',
-    blurb: 'Four categories, festival architecture, and a review engine that turns first-time buyers into proof.',
+    long: '/images/kaarmugizh-long.webp',
+    blurb: 'Four audiences, festival architecture, and a catalogue of 300+ products that stays easy to shop.',
     brand: 'A handloom label with over 300 SKUs across four categories, selling to buyers who shop by season and by festival.',
     brief: 'Give range a shape. With hundreds of products, the store needed architecture that made festival season navigable, not overwhelming.',
     built: 'Festival-led collection architecture, four clean category paths (women, men, kids, jewellery), and a jewellery line merchandised to sell alongside the saree rather than compete with it.',
@@ -201,6 +254,7 @@ export const cases = [
 ]
 
 export const getCase = (slug) => cases.find((c) => c.slug === slug)
+export const getTestimonial = (slug) => testimonials.find((t) => t.slug === slug)
 export const getNextCase = (slug) => {
   const i = cases.findIndex((c) => c.slug === slug)
   return cases[(i + 1) % cases.length]

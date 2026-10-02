@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
-import { Seo, Pill, Meta, CaseCard } from './components'
+import { Seo, Pill, Meta, CaseCard, Quote } from './components'
 import {
   site, stats, services, packages, alwaysIncluded, processSteps, studioFaq,
   monthlyWork, brandTiers, commitments, cases, getCase, getNextCase,
+  categories, testimonials, getTestimonial,
   needOptions, budgetOptions, whatsappLink,
 } from './content'
 
@@ -26,12 +27,12 @@ export function Home() {
       <Seo path="/" />
       <section className="wrap hero">
         <h1 className="display-xl rise">
-          Shopify stores<br />for India’s<br /><span className="serif">craft-led</span> brands.
+          Shopify stores<br />for brands with<br /><span className="serif">something to say.</span>
         </h1>
         <div className="hero-foot rise rise-2">
           <p className="body-lg">
-            House of Chirmi is a Shopify studio. We design, build and grow storefronts for labels selling
-            sarees, suits and jewellery to people who care how things are made.
+            House of Chirmi is a Shopify studio. We design, build and grow storefronts for independent
+            brands — fashion, jewellery, bags, home décor, and whatever you’re making next.
           </p>
           <div className="pill-row">
             <Pill to="/work">View work</Pill>
@@ -52,6 +53,16 @@ export function Home() {
         </div>
       </section>
 
+      <section className="wrap section" aria-labelledby="range-h">
+        <div className="section-head">
+          <h2 id="range-h" className="heading-sm">Built so far</h2>
+          <p className="caption">Your category isn’t here? Good — tell us about it.</p>
+        </div>
+        <ul className="chips">
+          {categories.map((c) => <li key={c}>{c}</li>)}
+        </ul>
+      </section>
+
       <section className="wrap section" aria-labelledby="work-h">
         <div className="section-head">
           <h2 id="work-h" className="display">Selected work</h2>
@@ -60,6 +71,13 @@ export function Home() {
         <CaseCard c={first} frame="frame-wide" eager />
         <div className="grid-2" style={{ marginTop: 64 }}>
           {rest.map((c) => <CaseCard key={c.slug} c={c} />)}
+        </div>
+      </section>
+
+      <section className="wrap section" aria-labelledby="words-h">
+        <h2 id="words-h" className="display" style={{ marginBottom: 40 }}>In their <span className="serif">words</span></h2>
+        <div className="grid-2">
+          {testimonials.map((t) => <Quote key={t.slug} t={t} link />)}
         </div>
       </section>
 
@@ -78,16 +96,17 @@ export function Home() {
 
       <section className="wrap section">
         <div className="two-col">
-          <p className="statement">Most agencies have never sold a <span className="serif">saree.</span></p>
+          <p className="statement">A store should look like <span className="serif">your brand,</span> not the theme.</p>
           <div style={{ display: 'grid', gap: 20, alignContent: 'end' }}>
             <p className="body-lg">
-              They’ll give you a clean grid and a fast theme. What they won’t give you is a collection
-              structure built around Onam and wedding season, or product pages that answer the sizing
-              question before it kills the sale.
+              Anyone can give you a clean grid and a fast theme. The work is in the structure: a wedding
+              edit for the clutch label, shop-by-room for the décor brand, festival collections for the
+              handloom store — paths built around how your buyer actually shops.
             </p>
             <p className="body-lg">
-              We only work with Indian craft and occasion-wear brands. That means we already know your
-              customer, your calendar, and the three reasons your cart gets abandoned.
+              We’ve built for fashion, jewellery, bags, home décor and handloom, and we’re happy to learn
+              something new. Every project starts by understanding your customer, your calendar, and why
+              your carts get abandoned.
             </p>
           </div>
         </div>
@@ -116,11 +135,11 @@ export function Home() {
 export function Work() {
   return (
     <>
-      <Seo title="Work" description="Selected Shopify storefronts for Indian craft and occasion-wear brands." path="/work" />
+      <Seo title="Work" description="Selected Shopify storefronts — fashion, jewellery, bags, home décor and handloom brands." path="/work" />
       <section className="wrap hero">
         <h1 className="display-xl rise">Work</h1>
         <div className="hero-foot rise rise-2">
-          <p className="body-lg">Storefronts built and selling for handloom, Kashmiri craft and jewellery labels.</p>
+          <p className="body-lg">Storefronts for fashion, jewellery, bags, home décor and handloom labels — each built around how its buyer shops.</p>
         </div>
       </section>
       <section className="wrap section">
@@ -149,6 +168,7 @@ export function CaseDetail() {
   const c = getCase(slug)
   if (!c) return <Navigate to="/work" replace />
   const next = getNextCase(slug)
+  const t = getTestimonial(slug)
   const blocks = [['The brand', c.brand], ['The brief', c.brief], ['What we built', c.built], ['The result', c.result]].filter(([, b]) => b)
   return (
     <>
@@ -158,11 +178,13 @@ export function CaseDetail() {
         <h1 className="display-xl rise" style={{ marginTop: 20 }}>{c.name}</h1>
         <div className="hero-foot rise rise-2">
           <p className="body-lg">{c.meta}</p>
-          <Pill href={c.url}>Visit live store ↗</Pill>
+          {c.url && <Pill href={c.url}>Visit live store ↗</Pill>}
         </div>
       </section>
       <section className="wrap section">
-        <div className="frame frame-land"><img src={c.image} alt={`${c.name} storefront homepage`} width="1600" height="1000" /></div>
+        {c.image
+          ? <div className="frame frame-land"><img src={c.image} alt={`${c.name} storefront homepage`} width="2000" height="1250" /></div>
+          : <div className="frame frame-land frame-type"><span className="display serif">{c.name}</span></div>}
       </section>
       <section className="wrap section">
         <div className="rows">
@@ -174,10 +196,29 @@ export function CaseDetail() {
           ))}
         </div>
       </section>
-      {c.mobile && (
+      {t && (
         <section className="wrap section">
-          <div className="phone"><img src={c.mobile} alt={`${c.name} on mobile`} width="780" height="1688" loading="lazy" /></div>
-          <p className="caption" style={{ textAlign: 'center', marginTop: 12 }}>Mobile-first — where most of your buyers shop</p>
+          <Quote t={t} large />
+        </section>
+      )}
+      {(c.long || c.mobile) && (
+        <section className="wrap section">
+          <div className="showcase">
+            {c.long && (
+              <figure>
+                <div className="browser" tabIndex={0} aria-label={`Scrollable view of the ${c.name} homepage`}>
+                  <img src={c.long} alt={`${c.name} homepage, scrolled`} width="1400" height="3500" loading="lazy" />
+                </div>
+                <figcaption className="caption">The homepage, top to bottom — scroll inside</figcaption>
+              </figure>
+            )}
+            {c.mobile && (
+              <figure>
+                <div className="phone"><img src={c.mobile} alt={`${c.name} on mobile`} width="780" height="1688" loading="lazy" /></div>
+                <figcaption className="caption">Mobile-first — where most buyers shop</figcaption>
+              </figure>
+            )}
+          </div>
         </section>
       )}
       <section className="wrap section">
@@ -195,11 +236,11 @@ export function CaseDetail() {
 export function Studio() {
   return (
     <>
-      <Seo title="Websites" description="Shopify storefronts for Indian craft brands. Launch ₹35,000, Growth ₹65,000, Signature ₹1,10,000. Prices published." path="/studio" />
+      <Seo title="Websites" description="Shopify storefronts for independent brands. Launch ₹35,000, Growth ₹65,000, Signature ₹1,10,000. Prices published." path="/studio" />
       <section className="wrap hero">
         <h1 className="display-xl rise">Storefronts that<br />earn the <span className="serif">price.</span></h1>
         <div className="hero-foot rise rise-2">
-          <p className="body-lg">Fast, beautiful Shopify stores for craft brands — built to sell at a premium without apology.</p>
+          <p className="body-lg">Fast, beautiful Shopify stores for independent brands — fashion, jewellery, home, lifestyle — built to sell at a premium without apology.</p>
           <Pill to="/contact">Start a project</Pill>
         </div>
       </section>
@@ -251,11 +292,11 @@ export function Studio() {
 export function Brands() {
   return (
     <>
-      <Seo title="Brand partnership" description="Monthly brand partnerships for craft labels that have a store and need it to grow. From ₹22,000 per month." path="/brands" />
+      <Seo title="Brand partnership" description="Monthly brand partnerships for independent labels that have a store and need it to grow. From ₹22,000 per month." path="/brands" />
       <section className="wrap hero">
         <h1 className="display-xl rise">Someone has to<br />own the brand.<br /><span className="serif">Let it be us.</span></h1>
         <div className="hero-foot rise rise-2">
-          <p className="body-lg">Monthly partnerships for craft labels that already have a store and need it to grow.</p>
+          <p className="body-lg">Monthly partnerships for brands that already have a store and need it to grow.</p>
           <Pill to="/contact">Book a brand review</Pill>
         </div>
       </section>
@@ -338,7 +379,8 @@ export function About() {
           <div style={{ display: 'grid', gap: 20 }}>
             <p className="body-lg" style={{ fontSize: 22, lineHeight: 1.17 }}>
               House of Chirmi is led by Khushi, a Shopify designer and developer who has built storefronts
-              for handloom, Kashmiri craft and jewellery labels.
+              for fashion, jewellery, handmade bags, home décor and handloom labels — and is always up for a
+              new category.
             </p>
             <p className="body-lg">
               Every project is handled personally — you talk to the person designing and building your
