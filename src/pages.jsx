@@ -30,8 +30,8 @@ export function Home() {
         </h1>
         <div className="hero-foot rise rise-2">
           <p className="body-lg">
-            We design, build and grow storefronts for labels selling sarees, suits and jewellery
-            to people who care how things are made.
+            House of Chirmi is a Shopify studio. We design, build and grow storefronts for labels selling
+            sarees, suits and jewellery to people who care how things are made.
           </p>
           <div className="pill-row">
             <Pill to="/work">View work</Pill>

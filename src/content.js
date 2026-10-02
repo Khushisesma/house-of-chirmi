@@ -3,7 +3,7 @@
 
 export const site = {
   name: 'House of Chirmi',
-  url: 'https://houseofchirmi.com',
+  url: 'https://www.houseofchirmi.com',
   tagline: 'Shopify storefronts and brand partnerships for Indian craft and occasion-wear brands.',
   email: 'khushisesma25@gmail.com',
   instagram: 'https://instagram.com/houseofchirmi',

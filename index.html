@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f0f0f0" />
+    <meta name="application-name" content="House of Chirmi" />
+    <meta name="apple-mobile-web-app-title" content="House of Chirmi" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
@@ -13,15 +15,37 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "House of Chirmi",
-        "url": "https://houseofchirmi.com",
-        "logo": "https://houseofchirmi.com/apple-touch-icon.png",
-        "image": "https://houseofchirmi.com/og.jpg",
-        "description": "Shopify storefronts and brand partnerships for Indian craft and occasion-wear brands.",
-        "areaServed": "IN",
-        "sameAs": ["https://instagram.com/houseofchirmi", "https://instagram.com/houseofchirmi.studio"],
-        "email": "khushisesma25@gmail.com"
+        "@graph": [
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://www.houseofchirmi.com/#organization",
+            "name": "House of Chirmi",
+            "alternateName": ["House of Chirmi Studio", "houseofchirmi"],
+            "url": "https://www.houseofchirmi.com",
+            "logo": "https://www.houseofchirmi.com/apple-touch-icon.png",
+            "image": "https://www.houseofchirmi.com/og.jpg",
+            "description": "House of Chirmi is a Shopify design and development studio that builds and grows online stores for Indian fashion, jewellery and craft brands.",
+            "slogan": "Shopify stores for India's craft-led brands",
+            "areaServed": { "@type": "Country", "name": "India" },
+            "knowsAbout": ["Shopify", "E-commerce website design", "Shopify development", "Brand strategy", "D2C fashion brands", "Jewellery e-commerce"],
+            "email": "khushisesma25@gmail.com",
+            "telephone": "+91-9660570279",
+            "priceRange": "₹22,000 – ₹1,10,000",
+            "sameAs": [
+              "https://www.instagram.com/houseofchirmi/",
+              "https://www.instagram.com/houseofchirmi.studio/"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.houseofchirmi.com/#website",
+            "name": "House of Chirmi",
+            "alternateName": "House of Chirmi Studio",
+            "url": "https://www.houseofchirmi.com",
+            "publisher": { "@id": "https://www.houseofchirmi.com/#organization" },
+            "inLanguage": "en-IN"
+          }
+        ]
       }
     </script>
   </head>

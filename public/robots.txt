@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://houseofchirmi.com/sitemap.xml
+Sitemap: https://www.houseofchirmi.com/sitemap.xml
